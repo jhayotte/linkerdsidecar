@@ -5,7 +5,7 @@ In this project, a trace of each call is visible in zipkin and everything works 
 
 This project is mainly base on the sample of code of **openzipkin**!
 
-![alt tag](https://github.com/jhayotte/linkerdsidecar/tree/master/doc/zipkin.png)
+![alt tag](https://raw.githubusercontent.com/jhayotte/linkerdsidecar/master/doc/zipkin.png)
 
 # Howto
 
