@@ -1,0 +1,25 @@
+admin:
+  port: 9990
+
+# telemetry:
+#- kind: io.l5d.zipkin
+#  host: zipkin
+#  port: 9410
+#  sampleRate: 0.02
+
+routers:
+- protocol: http
+  label: incoming
+  servers:
+  - port: 4140
+    ip: 0.0.0.0
+  dtab: |
+    /svc        => /$/inet/svc1svc/61001;
+
+- protocol: http
+  label: outgoing
+  servers:
+  - port: 4141
+    ip: 0.0.0.0
+  dtab: |
+    /svc        => /$/inet/linkerd_svc2/4140;

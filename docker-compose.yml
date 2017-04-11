@@ -1,0 +1,59 @@
+version: '2'
+
+services:
+  svc1:
+      build: ./svc1
+      image: svc1:latest
+      container_name: svc1svc
+      ports: 
+        - "61001:61001"
+      depends_on: 
+        - linkerd_svc1
+        - zipkin  
+        
+  # linkerd_svc1 sidecar
+  linkerd_svc1:
+      image: buoyantio/linkerd:0.9.0
+      container_name: linkerd_svc1
+      ports: 
+        - "4140:4140"
+        - "4141:4141"
+        - "9990:9990"
+      volumes: ["./config_svc1:/io.buoyant/linkerd/config:ro"]
+      command: /io.buoyant/linkerd/config/linkerd.yml
+
+  svc2:
+      build: ./svc2
+      image: svc2:latest
+      container_name: svc2svc
+      ports: 
+        - "61002:61002"
+      depends_on: 
+        - linkerd_svc2
+        - zipkin  
+
+  # linkerd_svc2 sidecar
+  linkerd_svc2:
+      image: buoyantio/linkerd:0.9.0
+      container_name: linkerd_svc2
+      ports: 
+        - "4240:4240"
+        - "4241:4241"
+        - "9991:9991"
+      volumes: 
+        - "./config_svc2:/io.buoyant/linkerd/config:ro"
+      command: /io.buoyant/linkerd/config/linkerd.yml
+
+  zipkin:
+    image: openzipkin/zipkin
+    container_name: zipkin
+    ports:
+      - 9410:9410
+      - 9411:9411
+
+  cli:
+      build: ./cli
+      image: cli:latest
+      container_name: clisvc
+      ports: 
+        - "8001:8001"

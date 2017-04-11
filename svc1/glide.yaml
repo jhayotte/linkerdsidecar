@@ -1,0 +1,10 @@
+package: github.com/jhayotte/linkerdsidecar/cli_with_2_services/svc1
+import:
+- package: github.com/opentracing/opentracing-go
+- package: github.com/openzipkin/zipkin-go-opentracing
+  subpackages:
+  - ext
+- package: golang.org/x/text
+  subpackages:
+  - context
+- package: github.com/openzipkin/zipkin-go-opentracing/examples/middleware
