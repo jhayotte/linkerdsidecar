@@ -3,10 +3,15 @@ LinkerSideCar shows an implementation of linkerd in a side car mode allowing to 
 
 In this project, a trace of each call is visible in zipkin and everything works through a docker-compose.
 
-#Howto
+This project is mainly base on the sample of code of **openzipkin**!
+
+![alt tag](https://github.com/jhayotte/linkerdsidecar/tree/master/doc/zipkin.png)
+
+# Howto
 
 ```
 docker-compose up --build
 curl -s 127.1:8001/run
 ```
+
 
